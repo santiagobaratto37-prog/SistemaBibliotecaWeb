@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Biblioteca</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .contenedor {
+            max-width: 650px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #cccccc;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #243b53;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+
+        button, .enlace {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2463a6;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover, .enlace:hover {
+            background-color: #174675;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Sistema de Biblioteca</h1>
+
+        <h2>Registrar libro</h2>
+
+        <form action="LibroServlet" method="POST">
+
+            <input type="hidden" name="accion" value="insertar">
+
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo"
+                   maxlength="150" required>
+
+            <label for="autor">Autor:</label>
+            <input type="text" id="autor" name="autor"
+                   maxlength="100">
+
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock"
+                   min="0" required>
+            <label for="idCategoria">ID Categoría:</label>
+
+            <input type="number" id="idCategoria"
+       name="idCategoria" min="1" required>
+
+            <button type="submit">Registrar libro</button>
+
+        </form>
+
+        <a class="enlace" href="LibroServlet">
+            Ver libros registrados
+        </a>
+
+    </div>
+
+</body>
+</html>
