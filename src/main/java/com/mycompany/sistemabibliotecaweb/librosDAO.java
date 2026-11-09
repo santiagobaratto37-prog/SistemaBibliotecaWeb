@@ -102,4 +102,32 @@ public class librosDAO {
             return false;
         }
     }
+    public libro buscarPorId(int id) throws java.sql.SQLException {
+    String sql = "SELECT id_libro, titulo, autor, stock, id_categoria "
+            + "FROM libros WHERE id_libro = ?";
+
+    try (Connection con = conexion.conectar()) {
+        if (con == null) {
+            throw new java.sql.SQLException("No se pudo conectar a MariaDB");
+        }
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return null;
+                }
+
+                libro encontrado = new libro();
+                encontrado.setIdLibro(rs.getInt("id_libro"));
+                encontrado.setTitulo(rs.getString("titulo"));
+                encontrado.setAutor(rs.getString("autor"));
+                encontrado.setStock(rs.getInt("stock"));
+                encontrado.setIdCategoria(rs.getInt("id_categoria"));
+                return encontrado;
+            }
+        }
+    }
+}
 }
