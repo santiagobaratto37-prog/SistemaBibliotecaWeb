@@ -29,7 +29,7 @@ public class CategoriasApiServlet extends HttpServlet {
                 + "FROM categorias ORDER BY id_categoria";
         JsonArray categorias = new JsonArray();
 
-        try (Connection con = conexion.conectar()) {
+        try (Connection con = abrirConexion()) {
             if (con == null) {
                 throw new SQLException("No se pudo conectar a MariaDB");
             }
@@ -54,5 +54,9 @@ public class CategoriasApiServlet extends HttpServlet {
         }
 
         gson.toJson(categorias, response.getWriter());
+    }
+    // Permite simular JDBC en las pruebas sin modificar la base de datos.
+    protected Connection abrirConexion() {
+        return conexion.conectar();
     }
 }

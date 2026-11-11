@@ -104,7 +104,7 @@ public class UsuariosApiServlet extends HttpServlet {
         responder(response, 201, resultado);
     }
 
-    private Connection abrirConexion() throws SQLException {
+    protected Connection abrirConexion() throws SQLException {
         Connection con = conexion.conectar();
         if (con == null) {
             throw new SQLException("No se pudo conectar a MariaDB");
